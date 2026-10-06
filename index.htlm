@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BRONOS | Relojería Premium</title>
+  <meta name="description" content="BRONOS - Relojes seleccionados con estilo y elegancia.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #080808;
+      color: #f4f1e8;
+      font-family: "Inter", sans-serif;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8, 8, 8, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #242424;
+    }
+
+    .navbar {
+      max-width: 1250px;
+      margin: auto;
+      height: 78px;
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      letter-spacing: 5px;
+      color: #d6b66a;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #d0d0d0;
+      text-decoration: none;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    nav a:hover {
+      color: #d6b66a;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .cart-button {
+      border: 1px solid #d6b66a;
+      color: #d6b66a;
+      background: transparent;
+      padding: 10px 15px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .cart-button:hover {
+      background: #d6b66a;
+      color: #080808;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #d6b66a;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(90deg, #080808 15%, rgba(8,8,8,.75), rgba(8,8,8,.2)),
+        url("https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1800&q=85");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-content {
+      max-width: 1250px;
+      width: 100%;
+      margin: auto;
+      padding: 60px 25px;
+    }
+
+    .hero small {
+      color: #d6b66a;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 650px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(50px, 7vw, 88px);
+      line-height: .98;
+      margin: 20px 0;
+    }
+
+    .hero p {
+      max-width: 520px;
+      color: #c5c5c5;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 15px 28px;
+      background: #d6b66a;
+      color: #080808;
+      text-decoration: none;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    .hero-button:hover {
+      background: #f0d58c;
+      transform: translateY(-2px);
+    }
+
+    /* SECCIONES Y PRODUCTOS */
+    .section {
+      max-width: 1250px;
+      margin: auto;
+      padding: 90px 25px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title span {
+      color: #d6b66a;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .section-title h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 44px;
+      margin-top: 10px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .category {
+      padding: 30px 20px;
+      border: 1px solid #292929;
+      text-align: center;
+      transition: .3s;
+    }
+
+    .category:hover {
+      border-color: #d6b66a;
+      transform: translateY(-4px);
+    }
+
+    .category h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+    }
+
+    .category p {
+      color: #888;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      background: #101010;
+      border: 1px solid #242424;
+      overflow: hidden;
+      transition: .3s;
+    }
+
+    .product:hover {
+      transform: translateY(-7px);
+      border-color: #806a38;
+    }
+
+    .product-image {
+      height: 330px;
+      background: #151515;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .5s;
+    }
+
+    .product:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 22px;
+    }
+
+    .brand {
+      color: #d6b66a;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .product h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      margin: 7px 0;
+    }
+
+    .product-description {
+      color: #888;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .price {
+      margin: 18px 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .product-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .buy {
+      flex: 1;
+      padding: 12px;
+      border: 0;
+      background: #d6b66a;
+      color: #080808;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .buy:hover {
+      background: #f0d58c;
+    }
+
+    /* MODAL DE CARRITO */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: #121212;
+      border: 1px solid #333;
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 4px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #222;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      font-family: "Playfair Display", serif;
+      color: #d6b66a;
+      font-size: 22px;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 14px;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 8px;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 18px;
+      font-weight: 600;
+      color: #d6b66a;
+    }
+
+    /* FOOTER & WHATSAPP */
+    footer {
+      border-top: 1px solid #222;
+      padding: 60px 25px 30px;
+      color: #888;
+    }
+
+    .footer-content {
+      max-width: 1250px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 50px;
+    }
+
+    footer h3 {
+      color: #d6b66a;
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
+
+    footer h4 {
+      color: #eee;
+      margin-bottom: 15px;
+    }
+
+    footer p, footer a {
+      color: #888;
+      font-size: 14px;
+      line-height: 1.8;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #d6b66a;
+    }
+
+    .copyright {
+      max-width: 1250px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #222;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      text-decoration: none;
+      box-shadow: 0 5px 25px rgba(0,0,0,.5);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        background: #080808;
+        flex-direction: column;
+        padding: 20px;
+        border-bottom: 1px solid #242424;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .products {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .products, .categories, .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="navbar">
+      <div class="logo">BRONOS</div>
+      
+      <nav id="nav-menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#coleccion">Colección</a>
+        <a href="#marcas">Marcas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-button" onclick="toggleCarritoModal()">
+          🛒 Carrito (<span id="cart-count">0</span>)
+        </button>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <small>BRONOS · WATCHES</small>
+      <h1>El tiempo,<br>con estilo.</h1>
+      <p>Descubrí una selección de relojes pensada para quienes buscan precisión, personalidad y elegancia.</p>
+      <a href="#coleccion" class="hero-button">EXPLORAR COLECCIÓN</a>
+    </div>
+  </section>
+
+  <!-- CATEGORÍAS -->
+  <section class="section" id="marcas">
+    <div class="section-title">
+      <span>Selección BRONOS</span>
+      <h2>Encontrá tu reloj</h2>
+    </div>
+    <div class="categories">
+      <div class="category">
+        <h3>Casio</h3>
+        <p>Clásicos y modernos</p>
+      </div>
+      <div class="category">
+        <h3>Rolex</h3>
+        <p>Alta relojería</p>
+      </div>
+      <div class="category">
+        <h3>Premium</h3>
+        <p>Modelos exclusivos</p>
+      </div>
+      <div class="category">
+        <h3>Clásicos</h3>
+        <p>Diseños atemporales</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLECCIÓN -->
+  <section class="section" id="coleccion">
+    <div class="section-title">
+      <span>BRONOS Collection</span>
+      <h2>Modelos destacados</h2>
+    </div>
+
+    <div class="products">
+      <article class="product">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?auto=format&fit=crop&w=900&q=85" alt="Reloj Casio Classic Steel">
+        </div>
+        <div class="product-info">
+          <div class="brand">Casio</div>
+          <h3>Classic Steel</h3>
+          <p class="product-description">Diseño clásico, acero y una estética que combina con cualquier ocasión.</p>
+          <div class="price">$85.000</div>
+          <div class="product-buttons">
+            <button class="buy" onclick="agregarCarrito('Casio Classic Steel', 85000)">AGREGAR</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85" alt="Reloj Chronograph Premium">
+        </div>
+        <div class="product-info">
+          <div class="brand">Premium</div>
+          <h3>Chronograph</h3>
+          <p class="product-description">Una pieza sofisticada para quienes buscan una presencia diferente.</p>
+          <div class="price">$145.000</div>
+          <div class="product-buttons">
+            <button class="buy" onclick="agregarCarrito('Chronograph Premium', 145000)">AGREGAR</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=900&q=85" alt="Reloj Rolex Elegance">
+        </div>
+        <div class="product-info">
+          <div class="brand">Rolex</div>
+          <h3>Elegance</h3>
+          <p class="product-description">Estética clásica y elegante. Un modelo pensado para destacar.</p>
+          <div class="price">Consultar</div>
+          <div class="product-buttons">
+            <button class="buy" onclick="consultarWhatsApp('Rolex Elegance')">CONSULTAR</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- MODAL CARRITO UI -->
+  <div class="modal-overlay" id="cart-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Tu Carrito</h3>
+        <button class="close-modal" onclick="toggleCarritoModal()">✕</button>
+      </div>
+      <div id="cart-items"></div>
+      <div class="cart-total" id="cart-total">Total: $0</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contacto">
+    <div class="footer-content">
+      <div>
+        <h3>BRONOS</h3>
+        <p>Relojería y accesorios seleccionados. Elegancia, precisión y estilo.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <p><a href="#inicio">Inicio</a></p>
+        <p><a href="#coleccion">Colección</a></p>
+        <p><a href="#marcas">Marcas</a></p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>Buenos Aires, Argentina</p>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 BRONOS · Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/5491123456789?text=Hola%20BRONOS,%20quiero%20consultar%20por%20un%20reloj." target="_blank" aria-label="WhatsApp">☎</a>
+
+  <!-- JAVASCRIPT RESTRUCTURADO -->
+  <script>
+    let carrito = JSON.parse(localStorage.getItem('bronos_cart')) || [];
+
+    function actualizarInterfazCarrito() {
+      const cartCount = document.getElementById("cart-count");
+      const cartItems = document.getElementById("cart-items");
+      const cartTotal = document.getElementById("cart-total");
+
+      const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+      cartCount.textContent = totalItems;
+
+      if (carrito.length === 0) {
+        cartItems.innerHTML = "<p style='color:#888;'>Tu carrito está vacío.</p>";
+        cartTotal.textContent = "Total: $0";
+      } else {
+        cartItems.innerHTML = "";
+        let total = 0;
+        
+        carrito.forEach((prod) => {
+          const subtotal = prod.precio * prod.cantidad;
+          total += subtotal;
+          cartItems.innerHTML += `
+            <div class="cart-item">
+              <span>${prod.nombre} (x${prod.cantidad})</span>
+              <span>$${subtotal.toLocaleString("es-AR")}</span>
+            </div>
+          `;
+        });
+
+        cartTotal.textContent = "Total: $" + total.toLocaleString("es-AR");
+      }
+
+      localStorage.setItem('bronos_cart', JSON.stringify(carrito));
+    }
+
+    function agregarCarrito(nombre, precio) {
+      const existe = carrito.find(item => item.nombre === nombre);
+
+      if (existe) {
+        existe.cantidad++;
+      } else {
+        carrito.push({ nombre, precio, cantidad: 1 });
+      }
+
+      actualizarInterfazCarrito();
+    }
+
+    function toggleCarritoModal() {
+      const modal = document.getElementById("cart-modal");
+      modal.classList.toggle("active");
+    }
+
+    function toggleMenu() {
+      const nav = document.getElementById("nav-menu");
+      nav.classList.toggle("active");
+    }
+
+    function consultarWhatsApp(producto) {
+      const telefono = "5491123456789";
+      const mensaje = "Hola BRONOS, quiero consultar por el reloj " + producto + ".";
+      window.open("https://wa.me/" + telefono + "?text=" + encodeURIComponent(mensaje), "_blank");
+    }
+
+    // Cargar estado inicial
+    document.addEventListener("DOMContentLoaded", actualizarInterfazCarrito);
+  </script>
+</body>
+</html>
